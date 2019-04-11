@@ -35,3 +35,5 @@ do {
 	print(error)
 }
 ```
+## TODO
+* Add Argon Hash
