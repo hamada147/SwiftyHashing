@@ -20,20 +20,14 @@ Support for the following hashing algorithms
 
 #### Normal Hashing
 ```swift
-do {
-	let hashedValue = try Hashing.hash(string: "Hello Moussa!", hashType: .SHA512, key: nil)
-} catch {
-	print(error)
-}
+let hash = MD5Hash()
+let hashedValue = hash.hash(string: "Hello Moussa!")
 ```
 
 #### HMACHashing
 ```swift
-do {
-	let hashedValue = try Hashing.hash(string: "Hello Moussa!", hashType: .HMACSHA512, key: "secret key")
-} catch {
-	print(error)
-}
+let hash = MD5Hash(key: "secret key")
+let hashedValue = hash.hash(string: "Hello Moussa!")
 ```
 ## TODO
 * Add Argon Hash
