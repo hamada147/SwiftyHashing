@@ -1,11 +1,45 @@
-//  Created by Ahmed Moussa on 4/11/19.
+//
+//  HashingProviderTests.swift
+//  HashingProviderTests
+//
+//  Created by Ahmed Moussa on 4/15/19.
 //  Copyright © 2019 Moussa Tech. All rights reserved.
 //
 
 import XCTest
+@testable import HashingProvider
 
-public class HashingTest: XCTestCase {
+extension XCTestCase {
+    func expectFatalError(expectedMessage: String, testcase: @escaping () -> Void) {
+        
+        let expectation = self.expectation(description: "expectingFatalError")
+        var assertionMessage: String? = nil
+        
+        FatalErrorUtils.replaceFatalError { message, _, _ in
+            assertionMessage = message
+            expectation.fulfill()
+            self.unreachable()
+        }
+        
+        DispatchQueue.global(qos: .userInitiated).async(execute: testcase)
+        
+        waitForExpectations(timeout: 2) { _ in
+            XCTAssertEqual(assertionMessage, expectedMessage)
+            
+            FatalErrorUtils.restoreFatalError()
+        }
+    }
     
+    private func unreachable() -> Never {
+        repeat {
+            RunLoop.current.run()
+        } while (true)
+    }
+}
+
+
+class HashingProviderTests: XCTestCase {
+
     public override func setUp() {
         super.setUp()
     }
@@ -115,4 +149,48 @@ public class HashingTest: XCTestCase {
         let hashedValue = hash.hash(string: stringToHash)
         XCTAssertEqual(hashedValue, correctResult)
     }
+    
+    public func test_hash_baseHash_digestLength() {
+        self.expectFatalError(expectedMessage: "Not implemented") {
+            let _ = baseHash().digestLength
+        }
+    }
+    
+    public func test_hash_baseHash_HMACAlgorithm() {
+        self.expectFatalError(expectedMessage: "Not implemented") {
+            let _ = baseHash().HMACAlgorithm
+        }
+    }
+    
+    public func test_hashData_MD5() {
+        let stringToHash = "Hello Moussa"
+        let stringToHashData = stringToHash.data(using: .utf8)! as NSData
+        let correctResult = "096b12f0582e55e61b3b7899d358286e"
+        let hexa = Array(correctResult)
+        let arr = stride(from: 0, to: correctResult.count, by: 2).compactMap { UInt8(String(hexa[$0...$0.advanced(by: 1)]), radix: 16) }
+        let correctResultData = NSData(bytes: arr, length: arr.count)
+        let hash = MD5Hash()
+        let hashedValue = hash.hash(data: stringToHashData)
+        XCTAssertEqual(hashedValue, correctResultData)
+    }
+    
+    public func test_hashData_HMACMD5() {
+        let stringToHash = "Hello Moussa"
+        let key = "codelab"
+        let stringToHashData = stringToHash.data(using: .utf8)! as NSData
+        let correctResult = "58c0844a04a354ad1aac0acd9a1efbd0"
+        let hexa = Array(correctResult)
+        let arr = stride(from: 0, to: correctResult.count, by: 2).compactMap { UInt8(String(hexa[$0...$0.advanced(by: 1)]), radix: 16) }
+        let correctResultData = NSData(bytes: arr, length: arr.count)
+        let hash = MD5Hash(key: key)
+        let hashedValue = hash.hash(data: stringToHashData)
+        XCTAssertEqual(hashedValue, correctResultData)
+    }
+    
+    public func test_hash_normalHash_baseHash() {
+        self.expectFatalError(expectedMessage: "Not implemented") {
+            let _ = baseHash().normalHash(nil, 2, nil)
+        }
+    }
+
 }
