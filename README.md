@@ -1,3 +1,4 @@
+![CI Status](https://travis-ci.com/hamada147/SwiftyHashing.svg?branch=master)
 # SwiftyHashing
 Hashing in Swift made easy
 
