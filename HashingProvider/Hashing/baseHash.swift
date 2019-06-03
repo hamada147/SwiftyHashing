@@ -8,11 +8,7 @@
 
 import Foundation
 import CommonCrypto
-
-public protocol Hash {
-    func hash(string: String) -> String?
-    func hash(data: NSData) -> NSData?
-}
+import EncryptionProviderInterfaces
 
 internal protocol HashConfig {
     var digestLength: Int { get }
@@ -35,10 +31,32 @@ public class baseHash: Hash, HashConfig {
         fatalError("Not implemented")
     }
     
-    private let key: String?
+    private let keyAsString: String?
+    private let key: [CChar]?
     
     public init(key: String? = nil) {
-        self.key = key
+        if (key == nil) {
+            self.keyAsString = nil
+            self.key = nil
+        } else {
+            self.keyAsString = key
+            self.key = key!.cString(using: String.Encoding.utf8)
+        }
+    }
+    
+    public init() {
+        self.keyAsString = nil
+        self.key = nil
+    }
+    
+    public init(keyAsData: Data? = nil) {
+        if (keyAsData == nil) {
+            self.keyAsString = nil
+            self.key = nil
+        } else {
+            self.keyAsString = String(decoding: keyAsData!, as: UTF8.self)
+            self.key = self.keyAsString!.cString(using: String.Encoding.utf8)
+        }
     }
     
     public func hash(data: NSData) -> NSData? {
@@ -49,10 +67,9 @@ public class baseHash: Hash, HashConfig {
             result = NSData(bytes: hash, length: self.digestLength)
         } else {
             let string = data.bytes
-            let keyStr = self.key!.cString(using: String.Encoding.utf8)
-            let keyLen = Int(self.key!.lengthOfBytes(using: String.Encoding.utf8))
+            let keyLen = Int(self.keyAsString!.lengthOfBytes(using: String.Encoding.utf8))
             let hash = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: self.digestLength)
-            self.hmacHash(self.HMACAlgorithm, keyStr!, keyLen, string, data.length, hash)
+            self.hmacHash(self.HMACAlgorithm, self.key!, keyLen, string, data.length, hash)
             result = NSData(bytes: hash, length: self.digestLength)
             hash.deallocate()
         }
@@ -87,13 +104,5 @@ public class baseHash: Hash, HashConfig {
             hexString += String(format:"%02x", UInt8(byte))
         }
         return hexString
-    }
-    
-    func hexStringFromData(input: UnsafeMutablePointer<CUnsignedChar>, length: Int) -> String {
-        let hash = NSMutableString()
-        for i in 0..<length {
-            hash.appendFormat("%02x", input[i])
-        }
-        return String(hash)
     }
 }
