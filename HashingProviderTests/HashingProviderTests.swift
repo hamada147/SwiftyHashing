@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import EncryptionProvider
+@testable import HashingProvider
 
 extension XCTestCase {
     func expectFatalError(expectedMessage: String, testcase: @escaping () -> Void) {

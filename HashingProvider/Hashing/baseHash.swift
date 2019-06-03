@@ -20,6 +20,11 @@ internal protocol HashConfig {
     func hmacHash(_ algorithm: CCHmacAlgorithm, _ key: UnsafeRawPointer!, _ keyLength: Int, _ data: UnsafeRawPointer!, _ dataLength: Int, _ macOut: UnsafeMutableRawPointer!)
 }
 
+public protocol Hash {
+    func hash(string: String) -> String?
+    func hash(data: NSData) -> NSData?
+}
+
 public class baseHash: Hash, HashConfig {
     
     var digestLength: Int {
