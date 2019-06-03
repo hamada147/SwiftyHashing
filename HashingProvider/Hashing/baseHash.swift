@@ -8,7 +8,6 @@
 
 import Foundation
 import CommonCrypto
-import EncryptionProviderInterfaces
 
 internal protocol HashConfig {
     var digestLength: Int { get }
