@@ -1,6 +1,6 @@
 //
 //  SHA224Hash.swift
-//  HashingProvider
+//  SwiftyHashing
 //
 //  Created by Ahmed Moussa on 4/15/19.
 //  Copyright © 2019 Moussa Tech. All rights reserved.

@@ -1,13 +1,13 @@
 //
-//  HashingProviderTests.swift
-//  HashingProviderTests
+//  SwiftyHashingTests.swift
+//  SwiftyHashingTests
 //
 //  Created by Ahmed Moussa on 4/15/19.
 //  Copyright © 2019 Moussa Tech. All rights reserved.
 //
 
 import XCTest
-@testable import HashingProvider
+@testable import SwiftyHashing
 
 extension XCTestCase {
     func expectFatalError(expectedMessage: String, testcase: @escaping () -> Void) {
@@ -383,5 +383,4 @@ class HashingProviderTests: XCTestCase {
             let _ = baseHash().HMACAlgorithm
         }
     }
-
 }

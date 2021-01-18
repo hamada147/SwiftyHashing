@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B6D511BF22649AAE0017008D"
-               BuildableName = "HashingProvider.framework"
-               BlueprintName = "HashingProvider"
-               ReferencedContainer = "container:HashingProvider.xcodeproj">
+               BuildableName = "SwiftyHashing.framework"
+               BlueprintName = "SwiftyHashing"
+               ReferencedContainer = "container:SwiftyHashing.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,31 +26,29 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      codeCoverageEnabled = "YES"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "B6D511BF22649AAE0017008D"
+            BuildableName = "SwiftyHashing.framework"
+            BlueprintName = "SwiftyHashing"
+            ReferencedContainer = "container:SwiftyHashing.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B6D511C822649AAE0017008D"
-               BuildableName = "HashingProviderTests.xctest"
-               BlueprintName = "HashingProviderTests"
-               ReferencedContainer = "container:HashingProvider.xcodeproj">
+               BuildableName = "SwiftyHashingTests.xctest"
+               BlueprintName = "SwiftyHashingTests"
+               ReferencedContainer = "container:SwiftyHashing.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B6D511BF22649AAE0017008D"
-            BuildableName = "HashingProvider.framework"
-            BlueprintName = "HashingProvider"
-            ReferencedContainer = "container:HashingProvider.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -66,13 +64,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B6D511BF22649AAE0017008D"
-            BuildableName = "HashingProvider.framework"
-            BlueprintName = "HashingProvider"
-            ReferencedContainer = "container:HashingProvider.xcodeproj">
+            BuildableName = "SwiftyHashing.framework"
+            BlueprintName = "SwiftyHashing"
+            ReferencedContainer = "container:SwiftyHashing.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -84,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B6D511BF22649AAE0017008D"
-            BuildableName = "HashingProvider.framework"
-            BlueprintName = "HashingProvider"
-            ReferencedContainer = "container:HashingProvider.xcodeproj">
+            BuildableName = "SwiftyHashing.framework"
+            BlueprintName = "SwiftyHashing"
+            ReferencedContainer = "container:SwiftyHashing.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
